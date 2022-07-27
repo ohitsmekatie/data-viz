@@ -105,3 +105,41 @@ def show_bar():
 
     fig.update_layout(height=900, width=900, title_text="Streaming Service Content Counts")
     fig.show()
+    
+def show_avg():
+    netflix_scores = netflix_titles["imdb_score"]
+    netflix_scores = netflix_scores.dropna()
+    avg_netflix = round(netflix_scores.mean(),2)
+
+    disney_scores = disney_titles["imdb_score"]
+    avg_disney = round(disney_scores.mean(),2)
+
+    hulu_scores = hulu_titles["imdb_score"]
+    hulu_scores = hulu_scores.dropna()
+    avg_hulu = round(hulu_scores.mean(),2)
+
+    prime_scores = prime_titles["imdb_score"]
+    prime_scores = prime_scores.dropna()
+    avg_prime = round(prime_scores.mean(),2)
+    
+    avg_scores = [["netflix", avg_netflix], ["disney", avg_disney], ["hulu", avg_hulu], ["prime", avg_prime]]
+  
+    avg_score_df = pd.DataFrame(avg_scores, columns=['service', 'avg_rating'])
+    avg_score_df_sorted = avg_score_df.sort_values(by="avg_rating")
+    
+    x = avg_score_df_sorted["service"]
+    y = avg_score_df_sorted["avg_rating"]
+
+    colors = ["mediumseagreen", "darksalmon", "mediumorchid", "goldenrod"]
+
+    fig = go.Figure(data=[go.Bar(
+                x=x, y=y,
+                text=y,
+                textposition='auto',
+                marker_color=colors
+            )])
+
+    fig.update_layout(title_text='Average IMDB rating by service')
+    fig.show()
+    
+    

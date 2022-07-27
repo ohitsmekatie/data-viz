@@ -33,7 +33,7 @@ def show_year_hist(dataframe_1, dataframe_2, dataframe_3, dataframe_4, column_na
 
 
     fig.update_layout(height=900, width=900, title_text="Streaming Service Counts by Release Year of Movie/Show")
-    fig.show()
+    fig.show("png")
     
     
 def print_totals():
@@ -104,7 +104,7 @@ def show_bar():
 
 
     fig.update_layout(height=900, width=900, title_text="Streaming Service Content Counts")
-    fig.show()
+    fig.show("png")
     
 def show_avg():
     netflix_scores = netflix_titles["imdb_score"]
@@ -140,6 +140,6 @@ def show_avg():
             )])
 
     fig.update_layout(title_text='Average IMDB rating by service')
-    fig.show()
+    fig.show("png")
     
     
